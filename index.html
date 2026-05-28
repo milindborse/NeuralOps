@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NeuralOps — AI Agent Ecosystem</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">
+    <span class="nav-logo">⬡</span>
+    <span class="nav-title">NeuralOps</span>
+    <span class="nav-tag">Multi-Agent Ecosystem v1.0</span>
+  </div>
+  <div class="nav-links">
+    <a href="#overview" class="nav-link active">Overview</a>
+    <a href="#architecture" class="nav-link">Architecture</a>
+    <a href="#agents" class="nav-link">Agents</a>
+    <a href="#phases" class="nav-link">Phases</a>
+    <a href="#scenarios" class="nav-link">Scenarios</a>
+    <a href="#simulator" class="nav-link highlight">Live Sim</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="overview">
+  <div class="hero-bg">
+    <div class="grid-overlay"></div>
+    <div class="pulse-ring r1"></div>
+    <div class="pulse-ring r2"></div>
+    <div class="pulse-ring r3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">Final Round Assignment — Agent Development Role</div>
+    <h1 class="hero-title">One Brain.<br><span class="accent">30 Agents.</span><br>Zero Chaos.</h1>
+    <p class="hero-sub">A unified multi-agent orchestration ecosystem for escape room / entertainment venue operations — designed for reliability, intelligence, and seamless human-AI collaboration.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">30</span><span class="stat-label">Agents</span></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-num">4</span><span class="stat-label">Build Phases</span></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-num">1</span><span class="stat-label">Orchestrator</span></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Scalable</span></div>
+    </div>
+    <div class="hero-actions">
+      <a href="#architecture" class="btn-primary">Explore Architecture</a>
+      <a href="#simulator" class="btn-secondary">Run Live Simulation →</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <canvas id="heroCanvas" width="500" height="500"></canvas>
+  </div>
+</section>
+
+<!-- SYSTEM PHILOSOPHY -->
+<section class="philosophy">
+  <div class="container">
+    <div class="section-label">System Philosophy</div>
+    <h2 class="section-title">Not 30 bots. <span class="accent">One intelligent ecosystem.</span></h2>
+    <div class="philosophy-grid">
+      <div class="phil-card">
+        <div class="phil-icon">🧠</div>
+        <h3>Central Orchestrator</h3>
+        <p>Every action routes through a single brain — the Central Orchestrator Agent. It owns memory, routing, retries, conflict resolution, and escalation logic. No agent acts alone.</p>
+      </div>
+      <div class="phil-card">
+        <div class="phil-icon">🔁</div>
+        <h3>Retry & Resilience</h3>
+        <p>Failed agent outputs trigger automatic retry with exponential backoff. After 3 failures, confidence scores drop and human-in-the-loop kicks in. The system never silently fails.</p>
+      </div>
+      <div class="phil-card">
+        <div class="phil-icon">📊</div>
+        <h3>Confidence Scoring</h3>
+        <p>Every agent output carries a confidence score (0–100). Scores below 60 trigger verification loops. Scores below 40 force human review before any customer-facing action.</p>
+      </div>
+      <div class="phil-card">
+        <div class="phil-icon">🛡️</div>
+        <h3>Agent Boundaries</h3>
+        <p>Each agent has hard ownership limits. No agent can override another's primary domain. Conflicts are flagged to the Orchestrator, never resolved unilaterally.</p>
+      </div>
+      <div class="phil-card">
+        <div class="phil-icon">👤</div>
+        <h3>Human-in-the-Loop</h3>
+        <p>4 defined human intervention points: high-conflict escalation, payment anomalies, identity-challenged handoffs, and compliance-sensitive decisions. Humans override always.</p>
+      </div>
+      <div class="phil-card">
+        <div class="phil-icon">🔗</div>
+        <h3>Shared Memory Layer</h3>
+        <p>All agents read/write to a single Customer Context Object. No agent operates on stale data. Context is versioned, timestamped, and auditable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE DIAGRAM -->
+<section class="architecture" id="architecture">
+  <div class="container">
+    <div class="section-label">System Architecture</div>
+    <h2 class="section-title">The <span class="accent">Orchestration Layer</span></h2>
+    <p class="section-sub">Click any node to explore agent details, boundaries, and connections.</p>
+    <div class="arch-container">
+      <div class="arch-diagram">
+        <!-- Central Orchestrator -->
+        <div class="orch-node" id="orchestrator-node">
+          <div class="orch-inner">
+            <div class="orch-icon">⬡</div>
+            <div class="orch-label">Central Orchestrator</div>
+            <div class="orch-sublabel">Routes · Memory · Retries · Escalation</div>
+          </div>
+          <div class="orch-ring"></div>
+          <div class="orch-ring r2"></div>
+        </div>
+
+        <!-- Layer rings -->
+        <div class="layer-labels">
+          <span class="layer-label l1">Layer 1: Frontline CX</span>
+          <span class="layer-label l2">Layer 2: Sales & Revenue</span>
+          <span class="layer-label l3">Layer 3: Intelligence</span>
+        </div>
+
+        <!-- Agent clusters -->
+        <div class="cluster cluster-top">
+          <div class="cluster-title">🎯 Frontline CX</div>
+          <div class="agent-nodes">
+            <div class="anode" data-agent="1" data-layer="cx">Inbound Call</div>
+            <div class="anode" data-agent="2" data-layer="cx">Style Adapt</div>
+            <div class="anode" data-agent="3" data-layer="cx">AI Identity</div>
+            <div class="anode" data-agent="4" data-layer="cx">Conflict Pred.</div>
+          </div>
+        </div>
+
+        <div class="cluster cluster-right">
+          <div class="cluster-title">⚡ Sales Accel.</div>
+          <div class="agent-nodes">
+            <div class="anode" data-agent="5" data-layer="sales">Lead Qualify</div>
+            <div class="anode" data-agent="6" data-layer="sales">Conv. Predict</div>
+            <div class="anode" data-agent="7" data-layer="sales">Objection Intel</div>
+            <div class="anode" data-agent="8" data-layer="sales">Upsell</div>
+            <div class="anode" data-agent="9" data-layer="sales">FOMO Conv.</div>
+            <div class="anode" data-agent="10" data-layer="sales">Proposal Gen.</div>
+          </div>
+        </div>
+
+        <div class="cluster cluster-bottom-right">
+          <div class="cluster-title">💰 Booking & Revenue</div>
+          <div class="agent-nodes">
+            <div class="anode" data-agent="11" data-layer="booking">Booking</div>
+            <div class="anode" data-agent="12" data-layer="booking">Payment Valid.</div>
+            <div class="anode" data-agent="13" data-layer="booking">Cart Recovery</div>
+            <div class="anode" data-agent="14" data-layer="booking">WhatsApp Book.</div>
+          </div>
+        </div>
+
+        <div class="cluster cluster-bottom">
+          <div class="cluster-title">📱 Follow-Up & Nurture</div>
+          <div class="agent-nodes">
+            <div class="anode" data-agent="15" data-layer="nurture">Follow-Up Auto.</div>
+            <div class="anode" data-agent="16" data-layer="nurture">Callback Timer</div>
+            <div class="anode" data-agent="17" data-layer="nurture">Lead Nurture</div>
+          </div>
+        </div>
+
+        <div class="cluster cluster-bottom-left">
+          <div class="cluster-title">✨ Customer Experience</div>
+          <div class="agent-nodes">
+            <div class="anode" data-agent="18" data-layer="exp">Post-Booking</div>
+            <div class="anode" data-agent="19" data-layer="exp">Live Preview</div>
+            <div class="anode" data-agent="20" data-layer="exp">Conflict Res.</div>
+            <div class="anode" data-agent="21" data-layer="exp">Supervisor Esc.</div>
+          </div>
+        </div>
+
+        <div class="cluster cluster-left">
+          <div class="cluster-title">🤖 Human Aug.</div>
+          <div class="agent-nodes">
+            <div class="anode" data-agent="22" data-layer="human">Human Assist.</div>
+            <div class="anode" data-agent="23" data-layer="human">Missed Opp.</div>
+          </div>
+        </div>
+
+        <div class="cluster cluster-top-left">
+          <div class="cluster-title">📈 Intelligence</div>
+          <div class="agent-nodes">
+            <div class="anode" data-agent="24" data-layer="intel">Reporting</div>
+            <div class="anode" data-agent="25" data-layer="intel">QA/Validation</div>
+            <div class="anode" data-agent="26" data-layer="intel">Emotional Mon.</div>
+            <div class="anode" data-agent="27" data-layer="intel">Website Conv.</div>
+            <div class="anode" data-agent="28" data-layer="intel">Reputation Mgmt</div>
+            <div class="anode" data-agent="29" data-layer="intel">Sales Forecast</div>
+            <div class="anode" data-agent="30" data-layer="intel">Dynamic Pricing</div>
+          </div>
+        </div>
+
+        <!-- SVG connector lines -->
+        <svg class="connector-svg" id="connectorSvg"></svg>
+      </div>
+
+      <!-- Legend -->
+      <div class="arch-legend">
+        <div class="legend-title">Agent Layers</div>
+        <div class="legend-item"><span class="leg-dot cx"></span>Frontline CX</div>
+        <div class="legend-item"><span class="leg-dot sales"></span>Sales Acceleration</div>
+        <div class="legend-item"><span class="leg-dot booking"></span>Booking & Revenue</div>
+        <div class="legend-item"><span class="leg-dot nurture"></span>Follow-Up & Nurture</div>
+        <div class="legend-item"><span class="leg-dot exp"></span>Customer Experience</div>
+        <div class="legend-item"><span class="leg-dot human"></span>Human Augmentation</div>
+        <div class="legend-item"><span class="leg-dot intel"></span>Intelligence & Growth</div>
+        <div class="legend-divider"></div>
+        <div class="legend-title">System Components</div>
+        <div class="legend-item"><span class="leg-icon">🧠</span>Shared Memory</div>
+        <div class="legend-item"><span class="leg-icon">📊</span>Confidence Score</div>
+        <div class="legend-item"><span class="leg-icon">🔁</span>Retry Engine</div>
+        <div class="legend-item"><span class="leg-icon">👤</span>Human Override</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORCHESTRATOR DEEP DIVE -->
+<section class="orchestrator-section">
+  <div class="container">
+    <div class="section-label">Core System</div>
+    <h2 class="section-title">The <span class="accent">Central Orchestrator</span> — System Brain</h2>
+    <div class="orch-grid">
+      <div class="orch-detail-card">
+        <div class="odc-header">
+          <span class="odc-num">01</span>
+          <span class="odc-title">Routing Engine</span>
+        </div>
+        <p>Every inbound event (call, WhatsApp, web form) hits the Orchestrator first. It reads the Customer Context Object, determines caller type, intent, and lead score, then routes to the correct agent chain.</p>
+        <div class="odc-flow">
+          <span class="flow-tag">Inbound Event</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-tag">Context Load</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-tag">Intent Classify</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-tag">Route Decision</span>
+        </div>
+      </div>
+      <div class="orch-detail-card">
+        <div class="odc-header">
+          <span class="odc-num">02</span>
+          <span class="odc-title">Memory Management</span>
+        </div>
+        <p>Maintains the Customer Context Object (CCO) — a versioned JSON state containing all interaction history, lead scores, booking status, and agent outputs. Every agent reads from and writes to the CCO atomically.</p>
+        <div class="code-snippet">
+          <pre>CCO: {
+  id: "cust_8821",
+  intent: "birthday_booking",
+  lead_score: 78,
+  conf_score: 85,
+  history: [...],
+  last_agent: "Lead_Qualify"
+}</pre>
+        </div>
+      </div>
+      <div class="orch-detail-card">
+        <div class="odc-header">
+          <span class="odc-num">03</span>
+          <span class="odc-title">Retry & Failure Logic</span>
+        </div>
+        <p>Each agent invocation is wrapped in a retry envelope. On timeout or failure, the Orchestrator retries up to 3 times with exponential backoff. After 3 failures, it routes to fallback agent or human queue.</p>
+        <div class="retry-viz">
+          <div class="retry-step ok">Attempt 1</div>
+          <div class="retry-arrow">→</div>
+          <div class="retry-step fail">FAIL</div>
+          <div class="retry-arrow">→</div>
+          <div class="retry-step ok">Retry (2s)</div>
+          <div class="retry-arrow">→</div>
+          <div class="retry-step fail">FAIL</div>
+          <div class="retry-arrow">→</div>
+          <div class="retry-step ok">Retry (8s)</div>
+          <div class="retry-arrow">→</div>
+          <div class="retry-step human">Human Queue</div>
+        </div>
+      </div>
+      <div class="orch-detail-card">
+        <div class="odc-header">
+          <span class="odc-num">04</span>
+          <span class="odc-title">Confidence Score Engine</span>
+        </div>
+        <p>Every agent output carries a confidence score. The Orchestrator enforces thresholds before allowing downstream actions. Low-confidence outputs are quarantined until verified.</p>
+        <div class="conf-viz">
+          <div class="conf-bar">
+            <div class="conf-fill high" style="width:90%"></div>
+            <span class="conf-label">≥80: Auto-proceed</span>
+          </div>
+          <div class="conf-bar">
+            <div class="conf-fill med" style="width:65%"></div>
+            <span class="conf-label">60–79: Verify loop</span>
+          </div>
+          <div class="conf-bar">
+            <div class="conf-fill low" style="width:40%"></div>
+            <span class="conf-label">&lt;60: Human review</span>
+          </div>
+        </div>
+      </div>
+      <div class="orch-detail-card">
+        <div class="odc-header">
+          <span class="odc-num">05</span>
+          <span class="odc-title">Escalation Matrix</span>
+        </div>
+        <p>Four defined escalation triggers route from AI to human. Each has its own SLA timer and notification protocol. Humans can override, pause, or redirect any workflow in real time.</p>
+        <div class="escalation-list">
+          <div class="esc-item"><span class="esc-trigger">🔴</span><span>Conflict score > 80 → Senior Agent</span></div>
+          <div class="esc-item"><span class="esc-trigger">🟡</span><span>Payment anomaly → Finance Review</span></div>
+          <div class="esc-item"><span class="esc-trigger">🟡</span><span>AI identity challenged → Human takeover</span></div>
+          <div class="esc-item"><span class="esc-trigger">🔴</span><span>3x retry failure → Supervisor queue</span></div>
+        </div>
+      </div>
+      <div class="orch-detail-card">
+        <div class="odc-header">
+          <span class="odc-num">06</span>
+          <span class="odc-title">Conflict Resolution</span>
+        </div>
+        <p>When two agents output conflicting decisions (e.g., FOMO Agent says "limited slots" but Booking Agent says "available"), the Orchestrator holds the conflict, queries both with a verification prompt, and uses the higher-confidence output.</p>
+        <div class="conflict-viz">
+          <div class="cv-node a">Agent A<br><small>Output: X</small></div>
+          <div class="cv-arrow">⚡</div>
+          <div class="cv-node b">Agent B<br><small>Output: Y</small></div>
+          <div class="cv-down">↓</div>
+          <div class="cv-orch">Orchestrator<br><small>Resolves by confidence</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENTS REFERENCE -->
+<section class="agents-section" id="agents">
+  <div class="container">
+    <div class="section-label">Agent Definitions</div>
+    <h2 class="section-title">All <span class="accent">30 Agents</span> — Defined</h2>
+    
+    <div class="agent-filter-bar">
+      <button class="filter-btn active" data-filter="all">All Agents</button>
+      <button class="filter-btn" data-filter="cx">Frontline CX</button>
+      <button class="filter-btn" data-filter="sales">Sales</button>
+      <button class="filter-btn" data-filter="booking">Booking</button>
+      <button class="filter-btn" data-filter="nurture">Nurture</button>
+      <button class="filter-btn" data-filter="exp">Experience</button>
+      <button class="filter-btn" data-filter="human">Human Aug.</button>
+      <button class="filter-btn" data-filter="intel">Intelligence</button>
+    </div>
+
+    <div class="agents-grid" id="agentsGrid">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- WORKFLOW FLOWS -->
+<section class="flows-section">
+  <div class="container">
+    <div class="section-label">Workflow Design</div>
+    <h2 class="section-title">Key <span class="accent">Trigger-Action Chains</span></h2>
+    
+    <div class="flow-tabs">
+      <button class="ftab active" data-flow="booking">📅 Booking Flow</button>
+      <button class="ftab" data-flow="complaint">😠 Complaint Flow</button>
+      <button class="ftab" data-flow="abandoned">🛒 Abandoned Cart</button>
+      <button class="ftab" data-flow="upsell">⬆️ Upsell Flow</button>
+      <button class="ftab" data-flow="failure">💥 Failure Flow</button>
+    </div>
+
+    <div class="flow-display" id="flowDisplay">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- BUILD PHASES -->
+<section class="phases-section" id="phases">
+  <div class="container">
+    <div class="section-label">Prioritization Roadmap</div>
+    <h2 class="section-title">4-Phase <span class="accent">Build Strategy</span></h2>
+
+    <div class="phases-grid">
+      <div class="phase-card p1">
+        <div class="phase-header">
+          <div class="phase-num">Phase 1</div>
+          <div class="phase-name">Core Nervous System</div>
+          <div class="phase-tag">Weeks 1–4 · MVP</div>
+        </div>
+        <div class="phase-why">
+          <strong>Why first:</strong> Nothing else works without the Orchestrator and basic frontline capability. This is the spine of the system.
+        </div>
+        <div class="phase-agents">
+          <div class="pa-item">⬡ Central Orchestrator (custom build)</div>
+          <div class="pa-item">📞 Agent 1: Inbound Call</div>
+          <div class="pa-item">🎭 Agent 2: Style Adaptation</div>
+          <div class="pa-item">🔍 Agent 3: AI Identity Monitor</div>
+          <div class="pa-item">⚠️ Agent 4: Conflict Predictor</div>
+          <div class="pa-item">✅ Agent 5: Lead Qualification</div>
+          <div class="pa-item">📋 Agent 11: Booking Agent</div>
+          <div class="pa-item">💳 Agent 12: Payment Validation</div>
+        </div>
+        <div class="phase-outcome">
+          <span class="outcome-label">Outcome:</span> System can receive calls, qualify leads, handle bookings, and collect payments — with retry logic and human escalation.
+        </div>
+      </div>
+
+      <div class="phase-card p2">
+        <div class="phase-header">
+          <div class="phase-num">Phase 2</div>
+          <div class="phase-name">Revenue Intelligence</div>
+          <div class="phase-tag">Weeks 5–8 · Growth</div>
+        </div>
+        <div class="phase-why">
+          <strong>Why second:</strong> Once bookings flow, maximize conversion with sales intelligence and recovery automation.
+        </div>
+        <div class="phase-agents">
+          <div class="pa-item">📊 Agent 6: Conversion Prediction</div>
+          <div class="pa-item">🛡️ Agent 7: Objection Intelligence</div>
+          <div class="pa-item">⬆️ Agent 8: Upsell Agent</div>
+          <div class="pa-item">⏰ Agent 9: FOMO Conversion</div>
+          <div class="pa-item">📄 Agent 10: Proposal Generation</div>
+          <div class="pa-item">🛒 Agent 13: Cart Recovery</div>
+          <div class="pa-item">💬 Agent 14: WhatsApp Booking</div>
+          <div class="pa-item">🔔 Agent 15: Follow-Up Automation</div>
+        </div>
+        <div class="phase-outcome">
+          <span class="outcome-label">Outcome:</span> Significant uplift in conversion rate, avg booking value, and abandoned cart recovery.
+        </div>
+      </div>
+
+      <div class="phase-card p3">
+        <div class="phase-header">
+          <div class="phase-num">Phase 3</div>
+          <div class="phase-name">Experience & Nurture</div>
+          <div class="phase-tag">Weeks 9–12 · Retention</div>
+        </div>
+        <div class="phase-why">
+          <strong>Why third:</strong> With revenue flowing, focus on lifetime value, post-booking delight, and medium-intent lead nurturing.
+        </div>
+        <div class="phase-agents">
+          <div class="pa-item">⏱️ Agent 16: Callback Timer</div>
+          <div class="pa-item">🌱 Agent 17: Lead Nurture</div>
+          <div class="pa-item">🎉 Agent 18: Post-Booking Experience</div>
+          <div class="pa-item">🎬 Agent 19: Live Preview</div>
+          <div class="pa-item">🤝 Agent 20: Conflict Resolution</div>
+          <div class="pa-item">🆙 Agent 21: Supervisor Escalation</div>
+          <div class="pa-item">🤖 Agent 22: Human Assistant</div>
+          <div class="pa-item">🔍 Agent 23: Missed Opportunity</div>
+        </div>
+        <div class="phase-outcome">
+          <span class="outcome-label">Outcome:</span> Lower churn, higher NPS scores, and better human agent performance.
+        </div>
+      </div>
+
+      <div class="phase-card p4">
+        <div class="phase-header">
+          <div class="phase-num">Phase 4</div>
+          <div class="phase-name">Intelligence Layer</div>
+          <div class="phase-tag">Weeks 13–16 · Scale</div>
+        </div>
+        <div class="phase-why">
+          <strong>Why last:</strong> These agents need data from phases 1–3 to function accurately. They optimize an already-working system.
+        </div>
+        <div class="phase-agents">
+          <div class="pa-item">📈 Agent 24: Reporting Dashboard</div>
+          <div class="pa-item">🔎 Agent 25: QA/Validation</div>
+          <div class="pa-item">😊 Agent 26: Emotional Monitor</div>
+          <div class="pa-item">🌐 Agent 27: Website Optimization</div>
+          <div class="pa-item">⭐ Agent 28: Reputation Management</div>
+          <div class="pa-item">🔮 Agent 29: Sales Forecasting</div>
+          <div class="pa-item">💰 Agent 30: Dynamic Pricing</div>
+        </div>
+        <div class="phase-outcome">
+          <span class="outcome-label">Outcome:</span> Full data-driven operation. Self-optimizing revenue, proactive quality assurance.
+        </div>
+      </div>
+    </div>
+
+    <div class="tradeoffs-section">
+      <h3>Key Tradeoffs & Decisions</h3>
+      <div class="tradeoffs-grid">
+        <div class="tradeoff-card">
+          <div class="trd-title">Custom Orchestrator vs Off-the-Shelf</div>
+          <p>Custom build chosen because no off-the-shelf tool supports the exact retry + confidence + memory pattern needed. LangGraph or CrewAI can scaffold but need heavy customization anyway.</p>
+        </div>
+        <div class="tradeoff-card">
+          <div class="trd-title">Dynamic Pricing Last</div>
+          <p>Pricing changes affect conversion. It's safer to optimize pricing only after we have real booking data and seasonality patterns — not theoretical models.</p>
+        </div>
+        <div class="tradeoff-card">
+          <div class="trd-title">WhatsApp Before Email</div>
+          <p>For Indian entertainment venues, WhatsApp has dramatically higher open rates (95%+) vs email. Prioritize async WhatsApp flows in Phase 2.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENARIOS & EDGE CASES -->
+<section class="scenarios-section" id="scenarios">
+  <div class="container">
+    <div class="section-label">Scenarios & Edge Cases</div>
+    <h2 class="section-title">System <span class="accent">Stress Tests</span></h2>
+
+    <div class="scenarios-accordion" id="scenariosAccordion">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- BOUNDARIES -->
+<section class="boundaries-section">
+  <div class="container">
+    <div class="section-label">Agent Governance</div>
+    <h2 class="section-title">Ownership <span class="accent">Boundaries</span> & Constraints</h2>
+    
+    <div class="boundary-grid">
+      <div class="boundary-card">
+        <div class="bc-header critical">🚫 Hard Stops — Never Cross</div>
+        <ul class="bc-list">
+          <li>No agent can finalize a refund > ₹500 without human approval</li>
+          <li>AI Identity Monitor cannot lie or deny being AI after direct questioning</li>
+          <li>FOMO Agent cannot fabricate inventory data ("Only 2 slots" must be real)</li>
+          <li>Payment Agent cannot retry a failed payment without customer re-consent</li>
+          <li>Upsell Agent cannot add items to cart without explicit customer confirmation</li>
+          <li>No agent can override a human operator's active session</li>
+        </ul>
+      </div>
+      <div class="boundary-card">
+        <div class="bc-header warning">⚠️ Ownership Boundaries</div>
+        <ul class="bc-list">
+          <li>Lead Qualification → owns lead scoring exclusively (Conversion Agent reads, not writes)</li>
+          <li>Booking Agent → sole authority on slot reservation (FOMO reads inventory, never writes)</li>
+          <li>Payment Validation → sole authority on transaction status</li>
+          <li>Conflict Predictor → can flag escalation but cannot initiate human handoff directly (must go via Orchestrator)</li>
+          <li>Reporting Agent → read-only access to all data, zero write permissions</li>
+        </ul>
+      </div>
+      <div class="boundary-card">
+        <div class="bc-header info">🔁 Overlap Management</div>
+        <ul class="bc-list">
+          <li>FOMO Agent + Upsell Agent: Orchestrator prevents both from triggering simultaneously (anti-spam gate)</li>
+          <li>Conflict Resolution + Supervisor Escalation: Resolution gets first 2 attempts; Supervisor is Level 2</li>
+          <li>Follow-Up + Lead Nurture: mutually exclusive triggers based on booking status flag in CCO</li>
+          <li>Style Adaptation + Communication: runs as a wrapper layer, not a competing agent</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE SIMULATOR -->
+<section class="simulator-section" id="simulator">
+  <div class="container">
+    <div class="section-label">Interactive Demo</div>
+    <h2 class="section-title">Live <span class="accent">Workflow Simulator</span></h2>
+    <p class="section-sub">Simulate a real customer journey and watch the agents activate in sequence.</p>
+
+    <div class="sim-container">
+      <div class="sim-left">
+        <div class="sim-setup">
+          <h3>Configure Scenario</h3>
+          <div class="sim-field">
+            <label>Customer Intent</label>
+            <select id="simIntent">
+              <option value="birthday">Birthday Party Booking</option>
+              <option value="corporate">Corporate Outing</option>
+              <option value="complaint">Complaint Call</option>
+              <option value="abandoned">Abandoned Checkout</option>
+            </select>
+          </div>
+          <div class="sim-field">
+            <label>Lead Temperature</label>
+            <select id="simTemp">
+              <option value="hot">Hot (High Intent)</option>
+              <option value="warm">Warm (Medium Intent)</option>
+              <option value="cold">Cold (Low Intent)</option>
+            </select>
+          </div>
+          <div class="sim-field">
+            <label>Simulate Failure</label>
+            <select id="simFailure">
+              <option value="none">No Failure</option>
+              <option value="payment">Payment Failure</option>
+              <option value="agent-crash">Agent Crash</option>
+              <option value="conflict">Agent Conflict</option>
+            </select>
+          </div>
+          <button class="btn-primary sim-btn" id="runSimBtn">▶ Run Simulation</button>
+          <button class="btn-secondary sim-btn" id="resetSimBtn">↺ Reset</button>
+        </div>
+
+        <div class="sim-cco">
+          <h3>Customer Context Object</h3>
+          <div class="cco-display" id="ccoDisplay">
+            <pre class="cco-pre" id="ccoPre">{
+  "status": "waiting",
+  "message": "Configure and run a simulation"
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="sim-right">
+        <div class="sim-timeline" id="simTimeline">
+          <div class="sim-placeholder">
+            <div class="sp-icon">▶</div>
+            <p>Run a simulation to see the agent workflow in action</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="tech-section">
+  <div class="container">
+    <div class="section-label">Recommended Tech Stack</div>
+    <h2 class="section-title">Engineering <span class="accent">Architecture</span></h2>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tc-layer">Orchestration</div>
+        <div class="tc-tools">
+          <span class="tc-tool">LangGraph</span>
+          <span class="tc-tool">LangChain</span>
+          <span class="tc-tool">Custom FSM</span>
+        </div>
+        <p>Stateful agent graphs with conditional edges. Custom Finite State Machine for retry/confidence logic.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tc-layer">LLM Layer</div>
+        <div class="tc-tools">
+          <span class="tc-tool">GPT-4o</span>
+          <span class="tc-tool">Claude 3.5</span>
+          <span class="tc-tool">Gemini Flash</span>
+        </div>
+        <p>Primary: GPT-4o for reasoning. Fast: Gemini Flash for classification. Backup: Claude for creative outputs.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tc-layer">Voice / Telephony</div>
+        <div class="tc-tools">
+          <span class="tc-tool">Twilio</span>
+          <span class="tc-tool">Deepgram STT</span>
+          <span class="tc-tool">ElevenLabs TTS</span>
+        </div>
+        <p>Twilio for call routing. Deepgram for real-time speech-to-text. ElevenLabs for natural voice synthesis.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tc-layer">Messaging</div>
+        <div class="tc-tools">
+          <span class="tc-tool">WhatsApp Business API</span>
+          <span class="tc-tool">Twilio Messaging</span>
+        </div>
+        <p>Official WhatsApp Business API for booking flows. Wati or 360dialog as BSP.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tc-layer">Memory / State</div>
+        <div class="tc-tools">
+          <span class="tc-tool">Redis</span>
+          <span class="tc-tool">Pinecone</span>
+          <span class="tc-tool">PostgreSQL</span>
+        </div>
+        <p>Redis for hot CCO state. Pinecone for semantic memory/retrieval. PostgreSQL for durable history.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tc-layer">CRM / Booking</div>
+        <div class="tc-tools">
+          <span class="tc-tool">HubSpot</span>
+          <span class="tc-tool">Zoho CRM</span>
+          <span class="tc-tool">Custom API</span>
+        </div>
+        <p>CRM sync for lead data. Custom booking API for slot management with real-time availability.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tc-layer">Payments</div>
+        <div class="tc-tools">
+          <span class="tc-tool">Razorpay</span>
+          <span class="tc-tool">PayU</span>
+          <span class="tc-tool">UPI</span>
+        </div>
+        <p>Razorpay for Indian payment flows. Webhook-driven validation agent triggers. UPI for frictionless mobile.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tc-layer">Monitoring</div>
+        <div class="tc-tools">
+          <span class="tc-tool">Langfuse</span>
+          <span class="tc-tool">Datadog</span>
+          <span class="tc-tool">Sentry</span>
+        </div>
+        <p>Langfuse for LLM observability + trace logging. Datadog for infra. Sentry for error tracking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="nav-logo">⬡</span>
+        <span class="nav-title">NeuralOps</span>
+      </div>
+      <p class="footer-tagline">Designed for the Agent Development Role — Final Round Submission</p>
+      <p class="footer-note">Built with systems thinking. One orchestrator. 30 agents. Zero isolated bots.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- AGENT DETAIL MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="agentModal">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-content" id="modalContent">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</div>
+
+<script src="js/agents.js"></script>
+<script src="js/simulator.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
