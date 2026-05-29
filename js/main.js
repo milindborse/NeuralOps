@@ -470,6 +470,287 @@ function initConfBars() {
   bars.forEach(b => observer.observe(b));
 }
 
+// ===== PATTERN VISUALS (INTERACTIVE) =====
+function initPatternVisuals() {
+  const tabsWrap = document.getElementById("patternVisualTabs");
+  const diagramEl = document.getElementById("patternVisualDiagram");
+  const logEl = document.getElementById("patternVisualLog");
+  const runBtn = document.getElementById("runPatternDemoBtn");
+  const resetBtn = document.getElementById("resetPatternDemoBtn");
+  const statusEl = document.getElementById("patternVisualStatus");
+
+  if (!tabsWrap || !diagramEl || !logEl || !runBtn || !resetBtn || !statusEl) return;
+
+  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+  const nowMs = () => (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
+
+  const state = {
+    pattern: "event-bus",
+    running: false,
+    t0: 0,
+  };
+
+  const patterns = {
+    "event-bus": {
+      label: "Event Bus",
+      base: () => ({ producer: "idle", outbox: "idle", bus: "idle", cA: "idle", cB: "idle", dlq: "idle", human: "idle" }),
+      render: (s) => {
+        const b = (name, v) => {
+          const m = { idle: "  ", active: ">>", ok: "OK", fail: "!!" };
+          return `[${m[v] || "  "}] ${name}`;
+        };
+        return [
+          `${b("Producer (BookingConfirmed)", s.producer)}  ──▶  ${b("Outbox (CCO+event)", s.outbox)}  ──▶  ${b("Event Bus", s.bus)}`,
+          `                                   │`,
+          `                                   ├──▶  ${b("Consumer A (Post-Booking)", s.cA)}`,
+          `                                   ├──▶  ${b("Consumer B (Reporting)", s.cB)}`,
+          `                                   └──▶  ${b("DLQ", s.dlq)}  ──▶  ${b("Human Queue", s.human)}`,
+          ``,
+          `Notes: consumer B fails once → retry → DLQ → human review`,
+        ].join("\n");
+      },
+      steps: [
+        { ms: 300, msg: "Emit booking.confirmed (idempotency_key=BK8821:confirmed)", apply: (s) => { s.producer = "active"; } },
+        { ms: 450, msg: "Write CCO patch + outbox record (atomic)", apply: (s) => { s.producer = "ok"; s.outbox = "active"; } },
+        { ms: 450, msg: "Publish event to bus: topic=booking.confirmed", apply: (s) => { s.outbox = "ok"; s.bus = "active"; } },
+        { ms: 400, msg: "Fan-out: start Consumer A and B in parallel", apply: (s) => { s.bus = "ok"; s.cA = "active"; s.cB = "active"; } },
+        { ms: 550, msg: "Consumer A OK: schedule pre-arrival sequence", apply: (s) => { s.cA = "ok"; } },
+        { ms: 450, msg: "Consumer B FAIL: downstream DB timeout → retry backoff", apply: (s) => { s.cB = "fail"; } },
+        { ms: 500, msg: "Max retries hit → route message to DLQ", apply: (s) => { s.dlq = "active"; } },
+        { ms: 450, msg: "DLQ triage → create human ticket with trace_id", apply: (s) => { s.dlq = "ok"; s.human = "active"; } },
+        { ms: 350, msg: "Human review queued (no customer impact)", apply: (s) => { s.human = "ok"; } },
+      ]
+    },
+
+    "state-machine": {
+      label: "State Machine",
+      base: () => ({ stage: "lead", invalid: false }),
+      render: (s) => {
+        const stages = ["lead", "qualified", "proposal", "booking", "payment", "completed"];
+        const show = stages.map(st => {
+          if (st === s.stage) return `[*${st.toUpperCase()}*]`;
+          return `[ ${st} ]`;
+        }).join(" → ");
+        const warn = s.invalid ? "\n\nINVALID transition detected → rejected (state unchanged)" : "";
+        return `${show}${warn}`;
+      },
+      steps: [
+        { ms: 400, msg: "Start: state=lead", apply: () => {} },
+        { ms: 450, msg: "Agent 5 proposes lead → qualified (evidence: intent + budget)", apply: (s) => { s.stage = "qualified"; } },
+        { ms: 500, msg: "Agent 10 generates proposal → proposal state committed", apply: (s) => { s.stage = "proposal"; } },
+        { ms: 500, msg: "Agent 11 reserves slot → booking", apply: (s) => { s.stage = "booking"; } },
+        { ms: 550, msg: "Agent 12 verifies payment webhook → payment", apply: (s) => { s.stage = "payment"; } },
+        { ms: 500, msg: "Attempt invalid jump: lead → completed (blocked by Orchestrator)", apply: (s) => { s.invalid = true; } },
+        { ms: 600, msg: "Orchestrator commits payment → completed", apply: (s) => { s.invalid = false; s.stage = "completed"; } },
+      ]
+    },
+
+    "validation-gateway": {
+      label: "Validation Gateway",
+      base: () => ({ agent: "idle", schema: "idle", rules: "idle", tools: "idle", decision: "idle", result: "" }),
+      render: (s) => {
+        const b = (name, v) => {
+          const m = { idle: "  ", active: ">>", ok: "OK", fail: "!!" };
+          return `[${m[v] || "  "}] ${name}`;
+        };
+        const tail = s.result ? `\n\nDecision: ${s.result}` : "";
+        return [
+          `${b("Agent Output (JSON+confidence)", s.agent)}`,
+          `   └─▶ ${b("Schema Validation", s.schema)}`,
+          `       └─▶ ${b("Business Rules", s.rules)}`,
+          `           └─▶ ${b("Tool Verification", s.tools)}`,
+          `               └─▶ ${b("Decision", s.decision)}`,
+          tail
+        ].join("\n");
+      },
+      steps: [
+        { ms: 350, msg: "Agent 9 proposes: ‘Only 2 slots left’ (confidence=72)", apply: (s) => { s.agent = "active"; } },
+        { ms: 450, msg: "Schema OK: required fields present", apply: (s) => { s.agent = "ok"; s.schema = "active"; } },
+        { ms: 450, msg: "Rules check: scarcity claims require inventory proof", apply: (s) => { s.schema = "ok"; s.rules = "active"; } },
+        { ms: 550, msg: "Tool call: inventory API timeout → cannot verify", apply: (s) => { s.rules = "ok"; s.tools = "fail"; } },
+        { ms: 500, msg: "Decision: RETRY with constraints (no scarcity claim)", apply: (s) => { s.decision = "active"; s.result = "RETRY (remove unverified scarcity claim)"; } },
+        { ms: 550, msg: "Retry output validated → APPROVE patched message", apply: (s) => { s.tools = "ok"; s.decision = "ok"; s.result = "APPROVE (safe customer message + trace logged)"; } },
+      ]
+    },
+
+    "parallel-execution": {
+      label: "Parallel Execution",
+      base: () => ({ snap: "idle", a: "idle", b: "idle", c: "idle", agg: "idle", gate: "idle", commit: "idle" }),
+      render: (s) => {
+        const b = (name, v) => {
+          const m = { idle: "  ", active: ">>", ok: "OK", fail: "!!" };
+          return `[${m[v] || "  "}] ${name}`;
+        };
+        return [
+          `${b("Load CCO snapshot vN", s.snap)}`,
+          ``,
+          `Parallel agents:`,
+          `  ├─ ${b("Agent 3 Identity Monitor", s.a)}`,
+          `  ├─ ${b("Agent 4 Conflict Predictor", s.b)}`,
+          `  └─ ${b("Agent 26 Emotional Monitor", s.c)}`,
+          ``,
+          `${b("Aggregator merge", s.agg)}  ──▶  ${b("Validation Gateway", s.gate)}  ──▶  ${b("Commit patch vN+1", s.commit)}`,
+        ].join("\n");
+      },
+      steps: [
+        { ms: 350, msg: "Read-only snapshot loaded: CCO@v41", apply: (s) => { s.snap = "active"; } },
+        { ms: 350, msg: "Kick off 3 classifiers in parallel", apply: (s) => { s.snap = "ok"; s.a = "active"; s.b = "active"; s.c = "active"; } },
+        { ms: 550, msg: "Identity OK (AI disclosure safe)", apply: (s) => { s.a = "ok"; } },
+        { ms: 550, msg: "Conflict risk=low (no escalation)", apply: (s) => { s.b = "ok"; } },
+        { ms: 550, msg: "Emotion=anxious → tone=calm + reassurance", apply: (s) => { s.c = "ok"; } },
+        { ms: 450, msg: "Aggregator merges patches + picks next agent route", apply: (s) => { s.agg = "active"; } },
+        { ms: 450, msg: "Gateway approves merged patch", apply: (s) => { s.agg = "ok"; s.gate = "active"; } },
+        { ms: 450, msg: "Commit CCO patch v42 + emit context.updated", apply: (s) => { s.gate = "ok"; s.commit = "ok"; } },
+      ]
+    },
+
+    "langgraph": {
+      label: "LangGraph Path",
+      base: () => ({ node: "start" }),
+      render: (s) => {
+        const nodes = [
+          "START",
+          "validate_input",
+          "parallel_classifiers",
+          "router",
+          "lead_qualify",
+          "validation_gateway",
+          "booking_reserve",
+          "payment_validate",
+          "validation_gateway",
+          "post_booking",
+          "END",
+        ];
+        const active = s.node;
+        const lines = nodes.map((n) => {
+          const key = n.toLowerCase();
+          if (key === active) return `▶ ${n}`;
+          return `  ${n}`;
+        });
+        return lines.join("\n");
+      },
+      steps: [
+        { ms: 350, msg: "Graph start", apply: (s) => { s.node = "start"; } },
+        { ms: 450, msg: "Node: validate_input", apply: (s) => { s.node = "validate_input"; } },
+        { ms: 550, msg: "Node: parallel_classifiers (style/identity/conflict)", apply: (s) => { s.node = "parallel_classifiers"; } },
+        { ms: 450, msg: "Node: router (intent=booking)", apply: (s) => { s.node = "router"; } },
+        { ms: 550, msg: "Node: lead_qualify", apply: (s) => { s.node = "lead_qualify"; } },
+        { ms: 550, msg: "Node: validation_gateway", apply: (s) => { s.node = "validation_gateway"; } },
+        { ms: 500, msg: "Node: booking_reserve", apply: (s) => { s.node = "booking_reserve"; } },
+        { ms: 550, msg: "Node: payment_validate", apply: (s) => { s.node = "payment_validate"; } },
+        { ms: 550, msg: "Node: validation_gateway (pre-side-effect commit)", apply: (s) => { s.node = "validation_gateway"; } },
+        { ms: 450, msg: "Node: post_booking", apply: (s) => { s.node = "post_booking"; } },
+        { ms: 400, msg: "Graph end", apply: (s) => { s.node = "end"; } },
+      ]
+    }
+  };
+
+  const getActivePattern = () => patterns[state.pattern] || patterns["event-bus"];
+
+  const setStatus = (txt) => {
+    statusEl.textContent = txt;
+  };
+
+  const clearLog = () => {
+    logEl.innerHTML = "";
+  };
+
+  const log = (msg) => {
+    const t = state.t0 ? (nowMs() - state.t0) : 0;
+    const timeStr = `T+${(t / 1000).toFixed(2)}s`;
+    const line = document.createElement("div");
+    line.className = "pv-logline";
+    const time = document.createElement("div");
+    time.className = "pv-logtime";
+    time.textContent = timeStr;
+    const text = document.createElement("div");
+    text.className = "pv-logmsg";
+    text.textContent = msg;
+    line.appendChild(time);
+    line.appendChild(text);
+    logEl.appendChild(line);
+    logEl.scrollTop = logEl.scrollHeight;
+  };
+
+  let renderState = getActivePattern().base();
+
+  const render = () => {
+    const p = getActivePattern();
+    diagramEl.textContent = p.render(renderState);
+  };
+
+  const setPattern = (patternKey) => {
+    if (!patterns[patternKey]) return;
+    if (state.running) return;
+    state.pattern = patternKey;
+    renderState = getActivePattern().base();
+    clearLog();
+    setStatus("Ready");
+    render();
+  };
+
+  const setDisabled = (disabled) => {
+    tabsWrap.querySelectorAll(".pv-tab").forEach(b => (b.disabled = disabled));
+    runBtn.disabled = disabled;
+  };
+
+  const updateTabsUI = () => {
+    tabsWrap.querySelectorAll(".pv-tab").forEach(btn => {
+      const active = btn.dataset.pattern === state.pattern;
+      btn.classList.toggle("active", active);
+      btn.setAttribute("aria-selected", active ? "true" : "false");
+    });
+  };
+
+  tabsWrap.addEventListener("click", (e) => {
+    const btn = e.target.closest(".pv-tab");
+    if (!btn) return;
+    setPattern(btn.dataset.pattern);
+    updateTabsUI();
+  });
+
+  resetBtn.addEventListener("click", () => {
+    if (state.running) return;
+    renderState = getActivePattern().base();
+    clearLog();
+    setStatus("Ready");
+    render();
+  });
+
+  runBtn.addEventListener("click", async () => {
+    if (state.running) return;
+
+    state.running = true;
+    state.t0 = nowMs();
+    clearLog();
+    setDisabled(true);
+    setStatus("Running…");
+    updateTabsUI();
+
+    const p = getActivePattern();
+    renderState = p.base();
+    render();
+
+    try {
+      for (const step of p.steps) {
+        step.apply(renderState);
+        render();
+        log(step.msg);
+        await sleep(step.ms);
+      }
+      setStatus("Done");
+    } finally {
+      state.running = false;
+      setDisabled(false);
+      updateTabsUI();
+    }
+  });
+
+  // Initial paint
+  render();
+  updateTabsUI();
+}
+
 // ===== INIT ALL =====
 document.addEventListener("DOMContentLoaded", () => {
   initHeroCanvas();
@@ -478,6 +759,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initOrchNode();
   initAnodeClicks();
   initConfBars();
+  initPatternVisuals();
 
   // Delay scroll animations slightly to let DOM settle
   setTimeout(initScrollAnimations, 100);

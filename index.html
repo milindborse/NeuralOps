@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NeuralOps — AI Agent Ecosystem</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -15,7 +16,7 @@
   <div class="nav-brand">
     <span class="nav-logo">⬡</span>
     <span class="nav-title">NeuralOps</span>
-    <span class="nav-tag">Multi-Agent Ecosystem v1.0</span>
+    <span class="nav-tag">Multi-Agent Ecosystem</span>
   </div>
   <div class="nav-links">
     <a href="#overview" class="nav-link active">Overview</a>
@@ -65,32 +66,32 @@
     <h2 class="section-title">Not 30 bots. <span class="accent">One intelligent ecosystem.</span></h2>
     <div class="philosophy-grid">
       <div class="phil-card">
-        <div class="phil-icon">🧠</div>
+        <div class="phil-icon"></div>
         <h3>Central Orchestrator</h3>
         <p>Every action routes through a single brain — the Central Orchestrator Agent. It owns memory, routing, retries, conflict resolution, and escalation logic. No agent acts alone.</p>
       </div>
       <div class="phil-card">
-        <div class="phil-icon">🔁</div>
+        <div class="phil-icon"></div>
         <h3>Retry & Resilience</h3>
         <p>Failed agent outputs trigger automatic retry with exponential backoff. After 3 failures, confidence scores drop and human-in-the-loop kicks in. The system never silently fails.</p>
       </div>
       <div class="phil-card">
-        <div class="phil-icon">📊</div>
+        <div class="phil-icon"></div>
         <h3>Confidence Scoring</h3>
         <p>Every agent output carries a confidence score (0–100). Scores below 60 trigger verification loops. Scores below 40 force human review before any customer-facing action.</p>
       </div>
       <div class="phil-card">
-        <div class="phil-icon">🛡️</div>
+        <div class="phil-icon"></div>
         <h3>Agent Boundaries</h3>
         <p>Each agent has hard ownership limits. No agent can override another's primary domain. Conflicts are flagged to the Orchestrator, never resolved unilaterally.</p>
       </div>
       <div class="phil-card">
-        <div class="phil-icon">👤</div>
+        <div class="phil-icon"></div>
         <h3>Human-in-the-Loop</h3>
         <p>4 defined human intervention points: high-conflict escalation, payment anomalies, identity-challenged handoffs, and compliance-sensitive decisions. Humans override always.</p>
       </div>
       <div class="phil-card">
-        <div class="phil-icon">🔗</div>
+        <div class="phil-icon"></div>
         <h3>Shared Memory Layer</h3>
         <p>All agents read/write to a single Customer Context Object. No agent operates on stale data. Context is versioned, timestamped, and auditable.</p>
       </div>
@@ -126,7 +127,7 @@
 
         <!-- Agent clusters -->
         <div class="cluster cluster-top">
-          <div class="cluster-title">🎯 Frontline CX</div>
+          <div class="cluster-title"> Frontline CX</div>
           <div class="agent-nodes">
             <div class="anode" data-agent="1" data-layer="cx">Inbound Call</div>
             <div class="anode" data-agent="2" data-layer="cx">Style Adapt</div>
@@ -136,7 +137,7 @@
         </div>
 
         <div class="cluster cluster-right">
-          <div class="cluster-title">⚡ Sales Accel.</div>
+          <div class="cluster-title"> Sales Accel.</div>
           <div class="agent-nodes">
             <div class="anode" data-agent="5" data-layer="sales">Lead Qualify</div>
             <div class="anode" data-agent="6" data-layer="sales">Conv. Predict</div>
@@ -148,7 +149,7 @@
         </div>
 
         <div class="cluster cluster-bottom-right">
-          <div class="cluster-title">💰 Booking & Revenue</div>
+          <div class="cluster-title"> Booking & Revenue</div>
           <div class="agent-nodes">
             <div class="anode" data-agent="11" data-layer="booking">Booking</div>
             <div class="anode" data-agent="12" data-layer="booking">Payment Valid.</div>
@@ -167,7 +168,7 @@
         </div>
 
         <div class="cluster cluster-bottom-left">
-          <div class="cluster-title">✨ Customer Experience</div>
+          <div class="cluster-title"> Customer Experience</div>
           <div class="agent-nodes">
             <div class="anode" data-agent="18" data-layer="exp">Post-Booking</div>
             <div class="anode" data-agent="19" data-layer="exp">Live Preview</div>
@@ -177,7 +178,7 @@
         </div>
 
         <div class="cluster cluster-left">
-          <div class="cluster-title">🤖 Human Aug.</div>
+          <div class="cluster-title"> Human Aug.</div>
           <div class="agent-nodes">
             <div class="anode" data-agent="22" data-layer="human">Human Assist.</div>
             <div class="anode" data-agent="23" data-layer="human">Missed Opp.</div>
@@ -185,7 +186,7 @@
         </div>
 
         <div class="cluster cluster-top-left">
-          <div class="cluster-title">📈 Intelligence</div>
+          <div class="cluster-title"> Intelligence</div>
           <div class="agent-nodes">
             <div class="anode" data-agent="24" data-layer="intel">Reporting</div>
             <div class="anode" data-agent="25" data-layer="intel">QA/Validation</div>
@@ -213,10 +214,10 @@
         <div class="legend-item"><span class="leg-dot intel"></span>Intelligence & Growth</div>
         <div class="legend-divider"></div>
         <div class="legend-title">System Components</div>
-        <div class="legend-item"><span class="leg-icon">🧠</span>Shared Memory</div>
-        <div class="legend-item"><span class="leg-icon">📊</span>Confidence Score</div>
-        <div class="legend-item"><span class="leg-icon">🔁</span>Retry Engine</div>
-        <div class="legend-item"><span class="leg-icon">👤</span>Human Override</div>
+        <div class="legend-item"><span class="leg-icon"></span>Shared Memory</div>
+        <div class="legend-item"><span class="leg-icon"></span>Confidence Score</div>
+        <div class="legend-item"><span class="leg-icon"></span>Retry Engine</div>
+        <div class="legend-item"><span class="leg-icon"></span>Human Override</div>
       </div>
     </div>
   </div>
@@ -376,6 +377,464 @@
   </div>
 </section>
 
+<!-- SYSTEM DESIGN PATTERNS -->
+<section class="patterns-section" id="patterns">
+  <div class="container">
+    <div class="section-label">System Design</div>
+    <h2 class="section-title">Scalable <span class="accent">Workflow Infrastructure</span></h2>
+    <p class="section-sub">These are the system-level patterns that make the 30-agent ecosystem practical to run in production: event-driven communication, explicit lifecycle state, centralized validation, safe parallelism, and a direct mapping to LangGraph.</p>
+
+    <div class="patterns-stack">
+      <!-- 1) EVENT BUS -->
+      <article class="pattern-card" id="event-bus">
+        <div class="pattern-head">
+          <div class="pattern-num">01</div>
+          <div>
+            <h3 class="pattern-title">Event Bus Architecture</h3>
+            <div class="pattern-sub">Agents communicate via events (publish/subscribe) rather than direct calls — enabling fan-out triggers, decoupling, and replay.</div>
+          </div>
+        </div>
+
+        <div class="pattern-grid">
+          <div class="pattern-block">
+            <div class="pattern-block-title">Purpose</div>
+            <ul class="pattern-list">
+              <li>Decouple producers (Booking/Payment) from consumers (Post-booking, Reporting, QA).</li>
+              <li>Enable parallel triggers: one event can activate multiple agents simultaneously.</li>
+              <li>Improve resilience: retries + dead-letter queues (DLQ) isolate failures without breaking the customer flow.</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Architecture Diagram</div>
+            <div class="code-snippet"><pre>Producers                     Event Bus                         Consumers (parallel)
+
+Agent 11 Booking  ───────▶  topic: booking.confirmed  ───────▶  Agent 18 Post-Booking
+Agent 12 Payment  ───────▶  topic: payment.succeeded  ───────▶  Agent 24 Reporting
+Agent 5  Qualify  ───────▶  topic: lead.qualified     ───────▶  Agent 25 QA/Validation
+Inbound channels  ───────▶  topic: intent.detected    ───────▶  Agent 15 Follow-up
+
+Retries: consumer retry with backoff  ───────▶  DLQ: dlq.* topics  ───────▶  Human queue / ops alert</pre></div>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Data Flow</div>
+            <div class="odc-flow">
+              <span class="flow-tag">Emit Event</span><span class="flow-arrow">→</span>
+              <span class="flow-tag">Persist (CCO + Outbox)</span><span class="flow-arrow">→</span>
+              <span class="flow-tag">Publish</span><span class="flow-arrow">→</span>
+              <span class="flow-tag">Consume</span><span class="flow-arrow">→</span>
+              <span class="flow-tag">Validate + Apply Patch</span>
+            </div>
+            <div class="pattern-note">Example fan-out: <strong>BookingConfirmed</strong> triggers multiple agents simultaneously.</div>
+            <div class="code-snippet"><pre>Event: BookingConfirmed
+{
+  event_id: "evt_9f1...",
+  type: "booking.confirmed",
+  booking_id: "BK8821",
+  cco_version: 41,
+  idempotency_key: "BK8821:confirmed",
+  ts: "2026-05-29T12:03:11Z"
+}
+
+Consumers in parallel:
+- Agent 18: schedule pre-arrival sequence
+- Agent 24: update revenue dashboard
+- Agent 25: QA spot-check (hallucination / policy)
+- Agent 28: optionally request review post-completion</pre></div>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Agent Interactions</div>
+            <ul class="pattern-list">
+              <li><strong>Producers</strong> only publish facts they own (Booking owns slot state, Payment owns transaction state).</li>
+              <li><strong>Consumers</strong> are idempotent and write via the Orchestrator/CCO patch protocol.</li>
+              <li><strong>Orchestrator</strong> acts as policy + routing gate (which events are allowed to trigger which agents).</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Failure Handling</div>
+            <ul class="pattern-list">
+              <li>At-least-once delivery assumed → consumers must be idempotent (use idempotency keys).</li>
+              <li>Retry with exponential backoff; after max attempts, move to dlq.* and alert ops/human queue.</li>
+              <li>Poison messages quarantined; reprocess after fix (replay from offset/time window).</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Scalability Benefits</div>
+            <ul class="pattern-list">
+              <li>Horizontal scale by consumer group (more instances per consumer).</li>
+              <li>Add new agents without changing producer code (new subscribers).</li>
+              <li>Backpressure + buffering prevents cascading failures during spikes.</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Real-World Implementation Considerations</div>
+            <ul class="pattern-list">
+              <li>Use an <strong>Outbox</strong> to publish events reliably with the same transaction as CCO writes.</li>
+              <li>Standardize event schema + versioning and trace IDs for observability.</li>
+              <li>Define ordering rules (per customer/booking) to avoid state races.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2) STATE MACHINE -->
+      <article class="pattern-card" id="state-machine">
+        <div class="pattern-head">
+          <div class="pattern-num">02</div>
+          <div>
+            <h3 class="pattern-title">State Machine Architecture</h3>
+            <div class="pattern-sub">An explicit customer lifecycle with valid/invalid transitions enforced by the Orchestrator (single source of truth).</div>
+          </div>
+        </div>
+
+        <div class="pattern-grid">
+          <div class="pattern-block">
+            <div class="pattern-block-title">Purpose</div>
+            <ul class="pattern-list">
+              <li>Prevent inconsistent workflows (e.g., “Completed” without payment).</li>
+              <li>Define ownership: which agent is allowed to propose a transition.</li>
+              <li>Make the system auditable: every transition is logged with reason + evidence.</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Architecture Diagram</div>
+            <div class="code-snippet"><pre>Lead → Qualified → Proposal → Booking → Payment → Completed
+  │        │           │          │         │
+  └──▶ Abandoned   ┌──▶ Cancelled ◀──┐   ┌──▶ Refunded
+                   │                │   │
+                   └──────▶ EscalatedToHuman ◀──────┘</pre></div>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Data Flow</div>
+            <ul class="pattern-list">
+              <li>Agent emits event + suggested transition (with evidence).</li>
+              <li>Orchestrator validates transition against FSM rules and current CCO version.</li>
+              <li>On accept: write lifecycle state + append transition log; publish state.changed.</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Agent Interactions</div>
+            <ul class="pattern-list">
+              <li>Agents <strong>propose</strong> transitions; the Orchestrator <strong>commits</strong> transitions.</li>
+              <li>Consumers act only when lifecycle state matches their responsibility.</li>
+              <li>Invalid transitions generate validation failures and can trigger QA/human review.</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Failure Handling</div>
+            <ul class="pattern-list">
+              <li>Reject invalid transitions and keep the workflow in a safe state.</li>
+              <li>Use optimistic concurrency (CCO version) to prevent races.</li>
+              <li>Escalate to human when transitions depend on ambiguous real-world signals (refund policy, disputes).</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Scalability Benefits</div>
+            <ul class="pattern-list">
+              <li>Many agents can run, but only one canonical lifecycle exists per customer/booking.</li>
+              <li>Clear partitioning by state lets you scale separate pipelines independently.</li>
+              <li>Safer iteration: add new states/edges without breaking existing paths (versioned FSM).</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Real-World Implementation Considerations</div>
+            <ul class="pattern-list">
+              <li>Model states as enums; store transition rules in code + config (with tests).</li>
+              <li>Always log transition “why” and evidence for audits and debugging.</li>
+              <li>Decide whether lifecycle state is per-customer, per-lead, or per-booking.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3) VALIDATION GATEWAY -->
+      <article class="pattern-card" id="validation-gateway">
+        <div class="pattern-head">
+          <div class="pattern-num">03</div>
+          <div>
+            <h3 class="pattern-title">Validation Gateway</h3>
+            <div class="pattern-sub">A centralized layer that validates every agent output before it can change state, contact a customer, or trigger payments/bookings.</div>
+          </div>
+        </div>
+
+        <div class="pattern-grid">
+          <div class="pattern-block">
+            <div class="pattern-block-title">Purpose</div>
+            <ul class="pattern-list">
+              <li>Stop hallucinations from becoming actions (inventory, policy, pricing, refunds).</li>
+              <li>Standardize confidence scoring + business rules + escalation logic in one place.</li>
+              <li>Make agent outputs “safe to apply” by converting them into validated patches.</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Architecture Diagram</div>
+            <div class="code-snippet"><pre>Agent Output
+  │  (text + structured JSON + confidence)
+  ▼
+Validation Gateway (central)
+  - schema validation
+  - business rules
+  - tool verification
+  - hallucination checks
+  ▼
+Decision: APPROVE / RETRY / ESCALATE / REJECT</pre></div>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Data Flow</div>
+            <div class="odc-flow">
+              <span class="flow-tag">Agent Output</span><span class="flow-arrow">→</span>
+              <span class="flow-tag">Validate</span><span class="flow-arrow">→</span>
+              <span class="flow-tag">Normalize</span><span class="flow-arrow">→</span>
+              <span class="flow-tag">Patch CCO</span><span class="flow-arrow">→</span>
+              <span class="flow-tag">Emit Event</span>
+            </div>
+            <div class="pattern-note">This formalizes the existing Confidence Score + QA concepts into a single enforced gateway.</div>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Agent Interactions</div>
+            <ul class="pattern-list">
+              <li>Agents return proposed actions + structured fields + confidence + evidence.</li>
+              <li>Gateway verifies with tools/APIs (inventory/payment status) before approving side effects.</li>
+              <li>Gateway can trigger QA spot checks and anomaly rules.</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Failure Handling</div>
+            <ul class="pattern-list">
+              <li>Low confidence: retry with tighter constraints; repeat failures → escalate to human.</li>
+              <li>Rule violations: reject and route to Supervisor/Human.</li>
+              <li>Tool/API down: pause side effects; allow safe conversational continuity.</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Scalability Benefits</div>
+            <ul class="pattern-list">
+              <li>Adding more agents doesn’t increase risk linearly; validation stays centralized.</li>
+              <li>One place to measure acceptance rates, retries, escalations, and drift.</li>
+              <li>Update business rules without rewriting every agent prompt.</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Real-World Implementation Considerations</div>
+            <ul class="pattern-list">
+              <li>Prefer structured outputs (schema) and treat free-form text as non-authoritative.</li>
+              <li>Use policy-as-code + test cases for critical rules.</li>
+              <li>Record decisions with trace IDs for audits and incident replay.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4) PARALLEL EXECUTION -->
+      <article class="pattern-card" id="parallel-execution">
+        <div class="pattern-head">
+          <div class="pattern-num">04</div>
+          <div>
+            <h3 class="pattern-title">Parallel Agent Execution</h3>
+            <div class="pattern-sub">Run multiple agents at once (emotion, qualification, style, identity) with shared context and safe aggregation.</div>
+          </div>
+        </div>
+
+        <div class="pattern-grid">
+          <div class="pattern-block">
+            <div class="pattern-block-title">Purpose</div>
+            <ul class="pattern-list">
+              <li>Reduce latency by not serializing independent analyses.</li>
+              <li>Improve quality by combining multiple perspectives before routing.</li>
+              <li>Keep boundaries: aggregation resolves conflicts before committing changes.</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Architecture Diagram</div>
+            <div class="code-snippet"><pre>Orchestrator loads CCO@vN
+  ├──▶ Agent 2  Style Adapt (wrapper)
+  ├──▶ Agent 3  AI Identity Monitor
+  ├──▶ Agent 4  Conflict Predictor
+  └──▶ Agent 26 Emotional Monitor
+
+Aggregator merges → Validation Gateway → commit patch@vN+1</pre></div>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Data Flow</div>
+            <ul class="pattern-list">
+              <li>Snapshot CCO (vN) is read-only for parallel tasks.</li>
+              <li>Each agent returns a patch proposal (no direct write).</li>
+              <li>Aggregator produces one merged patch → Validation Gateway → commit.</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Agent Interactions</div>
+            <ul class="pattern-list">
+              <li>Context sharing is via the CCO snapshot; agents do not call each other.</li>
+              <li>Conflicts trigger verification loops or a supervisor decision.</li>
+              <li>Communication agents wrap messages but cannot change facts.</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Failure Handling</div>
+            <ul class="pattern-list">
+              <li>Timeouts: proceed with partial results for non-critical agents (graceful degradation).</li>
+              <li>Critical verification failures halt side effects and trigger retry/escalation.</li>
+              <li>Cancel stale tasks when the customer changes intent and restart on new CCO version.</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Scalability Benefits</div>
+            <ul class="pattern-list">
+              <li>Parallelize LLM/tool calls across workers; scale by traffic and SLA.</li>
+              <li>Split fast classifiers from slow generators to control cost/latency.</li>
+              <li>Isolate weak agents so they don’t bottleneck the whole workflow.</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Real-World Implementation Considerations</div>
+            <ul class="pattern-list">
+              <li>Define mandatory vs optional agents per stage.</li>
+              <li>Use structured merge semantics to avoid overwriting fields.</li>
+              <li>Enforce per-customer rate limits to prevent “agent storms”.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5) LANGGRAPH -->
+      <article class="pattern-card" id="langgraph">
+        <div class="pattern-head">
+          <div class="pattern-num">05</div>
+          <div>
+            <h3 class="pattern-title">LangGraph Mapping</h3>
+            <div class="pattern-sub">Maps to LangGraph: State (CCO), Nodes (agents/validators), Edges (routing), Conditional transitions, Retries, Human-in-the-Loop, and a Supervisor (Orchestrator).</div>
+          </div>
+        </div>
+
+        <div class="pattern-grid">
+          <div class="pattern-block">
+            <div class="pattern-block-title">Purpose</div>
+            <ul class="pattern-list">
+              <li>Turn this design into an implementable orchestration blueprint.</li>
+              <li>Standardize retries, routing, and human review in graph form.</li>
+              <li>Provide engineers a direct path from spec to code.</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Architecture Diagram</div>
+            <div class="code-snippet"><pre>State: CCO
+Nodes: Agent_1..Agent_30, ValidationGateway, Supervisor, HumanReview
+Edges: router(state) → next_node
+Validation: gate before side effects
+HITL: route to HumanReview when confidence/policy requires</pre></div>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Data Flow (Booking Workflow)</div>
+            <div class="code-snippet"><pre>START → validate_input
+  → parallel: [style_adapt, identity_monitor, conflict_predict]
+  → router(intent)
+      booking     → lead_qualify → validation
+      complaint   → conflict_resolution → supervisor
+      abandoned   → cart_recovery
+  → booking_reserve → payment_validate → validation → post_booking → END</pre></div>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Agent Interactions</div>
+            <ul class="pattern-list">
+              <li>Agents are nodes returning structured patches; the gateway decides if they commit.</li>
+              <li>Supervisor owns routing and conflict resolution (centralized governance).</li>
+              <li>HumanReview runs when confidence/business rules require approval.</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Failure Handling</div>
+            <ul class="pattern-list">
+              <li>Per-node retry policies and global circuit breakers for external APIs.</li>
+              <li>Validation failures route to retry-with-constraints or human review.</li>
+              <li>Execution is resumable from checkpoints (CCO versions) after failures.</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Scalability Benefits</div>
+            <ul class="pattern-list">
+              <li>Nodes can be distributed (separate workers per agent type).</li>
+              <li>Traces per node/edge make bottlenecks and failures obvious.</li>
+              <li>Swap models/prompts per node without rewriting control flow.</li>
+            </ul>
+          </div>
+
+          <div class="pattern-block">
+            <div class="pattern-block-title">Real-World Implementation Considerations</div>
+            <ul class="pattern-list">
+              <li>Define typed State schema (fields + write authority).</li>
+              <li>Separate decision nodes from side-effect nodes and guard side effects with validation.</li>
+              <li>Instrument every node with cost/latency metrics and store artifacts for incident replay.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="pattern-visuals" aria-label="Interactive pattern visuals">
+      <div class="pv-header">
+        <h3>Interactive Pattern Visuals</h3>
+        <p>Pick a pattern and run a short, step-by-step demo. This is a visual, runtime-shaped view of how the orchestration behaves (events, state transitions, validation decisions, parallel runs, and a LangGraph-style path).</p>
+      </div>
+
+      <div class="pv-tabs" id="patternVisualTabs" role="tablist" aria-label="Pattern visual tabs">
+        <button class="pv-tab active" type="button" role="tab" aria-selected="true" data-pattern="event-bus">Event Bus</button>
+        <button class="pv-tab" type="button" role="tab" aria-selected="false" data-pattern="state-machine">State Machine</button>
+        <button class="pv-tab" type="button" role="tab" aria-selected="false" data-pattern="validation-gateway">Validation Gateway</button>
+        <button class="pv-tab" type="button" role="tab" aria-selected="false" data-pattern="parallel-execution">Parallel Execution</button>
+        <button class="pv-tab" type="button" role="tab" aria-selected="false" data-pattern="langgraph">LangGraph Path</button>
+      </div>
+
+      <div class="pv-grid">
+        <div class="pv-panel">
+          <div class="pv-panel-title">Flow</div>
+          <div class="code-snippet pv-code" role="region" aria-label="Pattern diagram">
+            <pre id="patternVisualDiagram"></pre>
+          </div>
+        </div>
+
+        <div class="pv-panel">
+          <div class="pv-panel-title">Event Log</div>
+          <div class="pv-controls">
+            <button class="btn-primary pv-btn" type="button" id="runPatternDemoBtn">▶ Run Demo</button>
+            <button class="btn-secondary pv-btn" type="button" id="resetPatternDemoBtn">↺ Reset</button>
+            <div class="pv-status" id="patternVisualStatus">Ready</div>
+          </div>
+          <div class="pv-log" id="patternVisualLog" role="region" aria-live="polite" aria-label="Pattern demo log"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- BUILD PHASES -->
 <section class="phases-section" id="phases">
   <div class="container">
@@ -394,13 +853,13 @@
         </div>
         <div class="phase-agents">
           <div class="pa-item">⬡ Central Orchestrator (custom build)</div>
-          <div class="pa-item">📞 Agent 1: Inbound Call</div>
-          <div class="pa-item">🎭 Agent 2: Style Adaptation</div>
-          <div class="pa-item">🔍 Agent 3: AI Identity Monitor</div>
-          <div class="pa-item">⚠️ Agent 4: Conflict Predictor</div>
-          <div class="pa-item">✅ Agent 5: Lead Qualification</div>
-          <div class="pa-item">📋 Agent 11: Booking Agent</div>
-          <div class="pa-item">💳 Agent 12: Payment Validation</div>
+          <div class="pa-item"> Agent 1: Inbound Call</div>
+          <div class="pa-item"> Agent 2: Style Adaptation</div>
+          <div class="pa-item"> Agent 3: AI Identity Monitor</div>
+          <div class="pa-item"> Agent 4: Conflict Predictor</div>
+          <div class="pa-item"> Agent 5: Lead Qualification</div>
+          <div class="pa-item"> Agent 11: Booking Agent</div>
+          <div class="pa-item"> Agent 12: Payment Validation</div>
         </div>
         <div class="phase-outcome">
           <span class="outcome-label">Outcome:</span> System can receive calls, qualify leads, handle bookings, and collect payments — with retry logic and human escalation.
@@ -417,14 +876,14 @@
           <strong>Why second:</strong> Once bookings flow, maximize conversion with sales intelligence and recovery automation.
         </div>
         <div class="phase-agents">
-          <div class="pa-item">📊 Agent 6: Conversion Prediction</div>
-          <div class="pa-item">🛡️ Agent 7: Objection Intelligence</div>
-          <div class="pa-item">⬆️ Agent 8: Upsell Agent</div>
-          <div class="pa-item">⏰ Agent 9: FOMO Conversion</div>
-          <div class="pa-item">📄 Agent 10: Proposal Generation</div>
-          <div class="pa-item">🛒 Agent 13: Cart Recovery</div>
-          <div class="pa-item">💬 Agent 14: WhatsApp Booking</div>
-          <div class="pa-item">🔔 Agent 15: Follow-Up Automation</div>
+          <div class="pa-item"> Agent 6: Conversion Prediction</div>
+          <div class="pa-item"> Agent 7: Objection Intelligence</div>
+          <div class="pa-item">⬆ Agent 8: Upsell Agent</div>
+          <div class="pa-item"> Agent 9: FOMO Conversion</div>
+          <div class="pa-item"> Agent 10: Proposal Generation</div>
+          <div class="pa-item"> Agent 13: Cart Recovery</div>
+          <div class="pa-item"> Agent 14: WhatsApp Booking</div>
+          <div class="pa-item"> Agent 15: Follow-Up Automation</div>
         </div>
         <div class="phase-outcome">
           <span class="outcome-label">Outcome:</span> Significant uplift in conversion rate, avg booking value, and abandoned cart recovery.
@@ -441,14 +900,14 @@
           <strong>Why third:</strong> With revenue flowing, focus on lifetime value, post-booking delight, and medium-intent lead nurturing.
         </div>
         <div class="phase-agents">
-          <div class="pa-item">⏱️ Agent 16: Callback Timer</div>
-          <div class="pa-item">🌱 Agent 17: Lead Nurture</div>
-          <div class="pa-item">🎉 Agent 18: Post-Booking Experience</div>
-          <div class="pa-item">🎬 Agent 19: Live Preview</div>
-          <div class="pa-item">🤝 Agent 20: Conflict Resolution</div>
-          <div class="pa-item">🆙 Agent 21: Supervisor Escalation</div>
-          <div class="pa-item">🤖 Agent 22: Human Assistant</div>
-          <div class="pa-item">🔍 Agent 23: Missed Opportunity</div>
+          <div class="pa-item">⏱ Agent 16: Callback Timer</div>
+          <div class="pa-item"> Agent 17: Lead Nurture</div>
+          <div class="pa-item"> Agent 18: Post-Booking Experience</div>
+          <div class="pa-item"> Agent 19: Live Preview</div>
+          <div class="pa-item"> Agent 20: Conflict Resolution</div>
+          <div class="pa-item"> Agent 21: Supervisor Escalation</div>
+          <div class="pa-item"> Agent 22: Human Assistant</div>
+          <div class="pa-item"> Agent 23: Missed Opportunity</div>
         </div>
         <div class="phase-outcome">
           <span class="outcome-label">Outcome:</span> Lower churn, higher NPS scores, and better human agent performance.
@@ -465,13 +924,13 @@
           <strong>Why last:</strong> These agents need data from phases 1–3 to function accurately. They optimize an already-working system.
         </div>
         <div class="phase-agents">
-          <div class="pa-item">📈 Agent 24: Reporting Dashboard</div>
-          <div class="pa-item">🔎 Agent 25: QA/Validation</div>
-          <div class="pa-item">😊 Agent 26: Emotional Monitor</div>
-          <div class="pa-item">🌐 Agent 27: Website Optimization</div>
-          <div class="pa-item">⭐ Agent 28: Reputation Management</div>
-          <div class="pa-item">🔮 Agent 29: Sales Forecasting</div>
-          <div class="pa-item">💰 Agent 30: Dynamic Pricing</div>
+          <div class="pa-item"> Agent 24: Reporting Dashboard</div>
+          <div class="pa-item"> Agent 25: QA/Validation</div>
+          <div class="pa-item"> Agent 26: Emotional Monitor</div>
+          <div class="pa-item"> Agent 27: Website Optimization</div>
+          <div class="pa-item"> Agent 28: Reputation Management</div>
+          <div class="pa-item"> Agent 29: Sales Forecasting</div>
+          <div class="pa-item"> Agent 30: Dynamic Pricing</div>
         </div>
         <div class="phase-outcome">
           <span class="outcome-label">Outcome:</span> Full data-driven operation. Self-optimizing revenue, proactive quality assurance.
